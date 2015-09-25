@@ -5,8 +5,6 @@
 
 // <RDTConfigurator URL="http://www.rt-thread.com/eclipse">
 
-/* 内核部分配置 */
-
 // <integer name="RT_NAME_MAX" description="内核对象名称的最大长度，建议是4对齐后+2以让rt_object进行4字节对齐" default="6" />
 #define RT_NAME_MAX	6
 // <integer name="RT_ALIGN_SIZE" description="系统中默认的对齐字节数，同时从heap分配出的内存块也是按照这样的方式进行对齐" default="4" />
@@ -78,7 +76,7 @@
 // </section>
 
 // <bool name="RT_USING_COMPONENTS_INIT" description="支持系统组件自动初始化功能" default="true" />
-// #define RT_USING_COMPONENTS_INIT
+#define RT_USING_COMPONENTS_INIT
 // <section name="RT_USING_FINSH" description="finsh shell选项配置" default="true" >
 #define RT_USING_FINSH
 // <bool name="FINSH_USING_SYMTAB" description="finsh支持EXPORT符号方式" default="true" />
@@ -95,7 +93,7 @@
 
 // <section name="LIBC" description="C运行库配置" default="always" >
 // <bool name="RT_USING_LIBC" description="支持完整的libc库" default="true" />
-// #define RT_USING_LIBC
+#define RT_USING_LIBC
 // <bool name="RT_USING_PTHREADS" description="系统支持pthread线程接口" default="true" />
 // #define RT_USING_PTHREADS
 // </section>
@@ -110,7 +108,9 @@
 #define DFS_FD_MAX	4
 // <bool name="RT_USING_DFS_ELMFAT" description="支持FAT文件系统" default="true" />
 #define RT_USING_DFS_ELMFAT
-// <integer name="RT_DFS_ELM_USE_LFN" description="FAT文件系统长文件名" default="0">
+// <bool name="RT_DFS_ELM_REENTRANT" description="FAT文件系统支持多任务保护" default="true" />
+#define RT_DFS_ELM_REENTRANT
+// <integer name="RT_DFS_ELM_USE_LFN" description="FAT文件系统长文件名吗，当前只支持3这种方式" default="0">
 // <item description="LFN with static LFN working buffer">1</item>
 // <item description="LFN with dynamic LFN working buffer on the stack">2</item>
 // <item description="LFN with dynamic LFN working buffer on the heap">3</item>
@@ -120,6 +120,10 @@
 #define RT_DFS_ELM_CODE_PAGE	437
 // <integer name="RT_DFS_ELM_MAX_LFN" description="文件名最大长度" default="256" />
 #define RT_DFS_ELM_MAX_LFN	128
+// <integer name="RT_DFS_ELM_MAX_SECTOR_SIZE" description="支持的最大扇区大小，例如底层是flash，它的最小擦除单位是4096，需要把它设置为4096" default="256" />
+#define RT_DFS_ELM_MAX_SECTOR_SIZE	512
+// <bool name="RT_DFS_ELM_USE_ERASE" description="FAT文件系统是否支持擦除操作" default="false" />
+// #define RT_DFS_ELM_USE_ERASE
 // <bool name="RT_USING_DFS_YAFFS2" description="支持YAFFS2文件系统" default="false" />
 // #define RT_USING_DFS_YAFFS2
 // <bool name="RT_USING_DFS_UFFS" description="支持UFFS文件系统" default="false" />
