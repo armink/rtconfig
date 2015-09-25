@@ -7,166 +7,170 @@
 
 /* 内核部分配置 */
 
-// <integer name="RT_NAME_MAX" description="Maximal size of kernel object name length" default="6" />
+// <integer name="RT_NAME_MAX" description="内核对象名称的最大长度，建议是4对齐后+2以让rt_object进行4字节对齐" default="6" />
 #define RT_NAME_MAX	6
-// <integer name="RT_ALIGN_SIZE" description="Alignment size for CPU architecture data access" default="4" />
+// <integer name="RT_ALIGN_SIZE" description="系统中默认的对齐字节数，同时从heap分配出的内存块也是按照这样的方式进行对齐" default="4" />
 #define RT_ALIGN_SIZE	4
-// <integer name="RT_THREAD_PRIORITY_MAX" description="Maximal level of thread priority" default="32">
+// <integer name="RT_THREAD_PRIORITY_MAX" description="系统中支持的最大优先级数目" default="32">
 // <item description="8">8</item>
 // <item description="32">32</item>
 // <item description="256">256</item>
 // </integer>
 #define RT_THREAD_PRIORITY_MAX	32
-// <integer name="RT_TICK_PER_SECOND" description="OS tick per second" default="100" />
+// <integer name="RT_TICK_PER_SECOND" description="每秒的OS tick节拍数，建议按照应用场合取60，100，或者1000" default="100" />
 #define RT_TICK_PER_SECOND	100
-// <section name="RT_DEBUG" description="Kernel Debug Configuration" default="true" >
+// <section name="RT_DEBUG" description="内核中是否打开一些调试选项（例如RT_ASSERT断言功能），建议打开" default="true" >
 #define RT_DEBUG
-// <bool name="RT_THREAD_DEBUG" description="Thread debug enable" default="false" />
-// #define RT_THREAD_DEBUG
-// <bool name="RT_USING_OVERFLOW_CHECK" description="Thread stack over flow detect" default="true" />
+// <bool name="RT_DEBUG_THREAD" description="是否打开线程调试选项" default="false" />
+// #define RT_DEBUG_THREAD    1
+// <bool name="RT_USING_OVERFLOW_CHECK" description="是否支持任务栈溢出检测，这个是一个辅助项，仅在任务切换时进行栈溢出检查" default="true" />
 #define RT_USING_OVERFLOW_CHECK
 // </section>
 
-// <bool name="RT_USING_HOOK" description="Using hook functions" default="true" />
+// <bool name="RT_USING_HOOK" description="系统中是否支持钩子函数，以获取系统中的一些信息" default="true" />
 #define RT_USING_HOOK
-// <section name="RT_USING_TIMER_SOFT" description="Using software timer which will start a thread to handle soft-timer" default="true" >
+// <section name="RT_USING_TIMER_SOFT" description="软定时器功能（RT_TIMER_FLAG_SOFT_TIMER属性的定时器将在任务的上下文中执行）" default="true" >
 // #define RT_USING_TIMER_SOFT
-// <integer name="RT_TIMER_THREAD_PRIO" description="The priority level of timer thread" default="4" />
+// <integer name="RT_TIMER_THREAD_PRIO" description="软定时器任务优先级" default="4" />
 #define RT_TIMER_THREAD_PRIO	4
-// <integer name="RT_TIMER_THREAD_STACK_SIZE" description="The stack size of timer thread" default="512" />
+// <integer name="RT_TIMER_THREAD_STACK_SIZE" description="软定时器任务栈大小" default="512" />
 #define RT_TIMER_THREAD_STACK_SIZE	512
 // </section>
 
-// <section name="IPC" description="Inter-Thread communication" default="always" >
-// <bool name="RT_USING_SEMAPHORE" description="Using semaphore in the system" default="true" />
+// <section name="IPC" description="任务间同步、通信机制配置" default="always" >
+// <bool name="RT_USING_SEMAPHORE" description="支持信号量功能" default="true" />
 #define RT_USING_SEMAPHORE
-// <bool name="RT_USING_MUTEX" description="Using mutex in the system" default="true" />
+// <bool name="RT_USING_MUTEX" description="支持互斥锁功能" default="true" />
 #define RT_USING_MUTEX
-// <bool name="RT_USING_EVENT" description="Using event group in the system" default="true" />
+// <bool name="RT_USING_EVENT" description="支持事件组功能" default="true" />
 #define RT_USING_EVENT
-// <bool name="RT_USING_MAILBOX" description="Using mailbox in the system" default="true" />
+// <bool name="RT_USING_MAILBOX" description="支持邮箱功能" default="true" />
 #define RT_USING_MAILBOX
-// <bool name="RT_USING_MESSAGEQUEUE" description="Using message queue in the system" default="true" />
+// <bool name="RT_USING_MESSAGEQUEUE" description="支持消息队列功能" default="true" />
 #define RT_USING_MESSAGEQUEUE
 // </section>
 
-// <section name="MM" description="Memory Management" default="always" >
-// <bool name="RT_USING_MEMPOOL" description="Using Memory Pool Management in the system" default="true" />
+// <section name="MM" description="内存管理配置" default="always" >
+// <bool name="RT_USING_MEMPOOL" description="支持静态内存池功能" default="true" />
 #define RT_USING_MEMPOOL
-// <bool name="RT_USING_MEMHEAP" description="Using Memory Heap Object in the system" default="true" />
+// <bool name="RT_USING_MEMHEAP" description="支持动态内存堆对象功能" default="true" />
 #define RT_USING_MEMHEAP
-// <bool name="RT_USING_HEAP" description="Using Dynamic Heap Management in the system" default="true" />
+// <bool name="RT_USING_HEAP" description="支持动态内存堆功能" default="true" />
 #define RT_USING_HEAP
-// <bool name="RT_USING_SMALL_MEM" description="Optimizing for small memory" default="false" />
+// <bool name="RT_USING_SMALL_MEM" description="小内存优化的内存堆管理算法" default="true" />
 #define RT_USING_SMALL_MEM
-// <bool name="RT_USING_SLAB" description="Using SLAB memory management for large memory" default="false" />
+// <bool name="RT_USING_SLAB" description="使用SLAB内存管理算法以支持大内存管理（>1MB级别的内存）" default="false" />
 // #define RT_USING_SLAB
 // </section>
 
-// <section name="RT_USING_DEVICE" description="Using Device Driver Framework" default="true" >
+// <section name="RT_USING_DEVICE" description="设备驱动框架配置" default="true" >
 #define RT_USING_DEVICE
-// <bool name="RT_USING_UART0" description="Using UART0" default="true" />
+// <bool name="RT_USING_UART0" description="支持UART0" default="true" />
 #define RT_USING_UART0
 // </section>
 
-// <section name="RT_USING_CONSOLE" description="Using console" default="true" >
+// <section name="RT_USING_CONSOLE" description="支持终端功能（rt_kprintf函数可用）" default="true" >
 #define RT_USING_CONSOLE
-// <integer name="RT_CONSOLEBUF_SIZE" description="The buffer size for console output" default="128" />
+// <integer name="RT_CONSOLEBUF_SIZE" description="终端缓存区大小（也定义了一次最多可以向终端输出的字节数）" default="128" />
 #define RT_CONSOLEBUF_SIZE	128
-// <string name="RT_CONSOLE_DEVICE_NAME" description="The device name for console" default="uart" />
+// <string name="RT_CONSOLE_DEVICE_NAME" description="终端使用的字符设备名（例如使用的是UART0设备）" default="uart" />
 #define RT_CONSOLE_DEVICE_NAME	"uart0"
 // </section>
 
-// <bool name="RT_USING_COMPONENTS_INIT" description="Using RT-Thread components initialization" default="true" />
+// <bool name="RT_USING_COMPONENTS_INIT" description="支持系统组件自动初始化功能" default="true" />
 // #define RT_USING_COMPONENTS_INIT
-// <section name="RT_USING_FINSH" description="Using finsh as shell, which is a C-Express shell" default="true" >
+// <section name="RT_USING_FINSH" description="finsh shell选项配置" default="true" >
 #define RT_USING_FINSH
-// <bool name="FINSH_USING_SYMTAB" description="Using symbol table in finsh shell" default="true" />
+// <bool name="FINSH_USING_SYMTAB" description="finsh支持EXPORT符号方式" default="true" />
 #define FINSH_USING_SYMTAB
-// <bool name="FINSH_USING_DESCRIPTION" description="Keeping description in symbol table" default="true" />
+// <bool name="FINSH_USING_DESCRIPTION" description="包括符号的描述信息" default="true" />
 #define FINSH_USING_DESCRIPTION
-// <integer name="FINSH_THREAD_STACK_SIZE" description="The stack size for finsh thread" default="4096" />
+// <integer name="FINSH_THREAD_STACK_SIZE" description="finsh shell的任务栈大小" default="4096" />
 #define FINSH_THREAD_STACK_SIZE	4096
+// <bool name="FINSH_USING_MSH" description="支持面向应用的msh shell" default="true" />
+#define FINSH_USING_MSH
+// <bool name="FINSH_USING_MSH_DEFAULT" description="shell默认使用msh方式" default="true" />
+//#define FINSH_USING_MSH_DEFAULT
 // </section>
 
-// <section name="LIBC" description="C Runtime library setting" default="always" >
-// <bool name="RT_USING_LIBC" description="Using C library" default="true" />
+// <section name="LIBC" description="C运行库配置" default="always" >
+// <bool name="RT_USING_LIBC" description="支持完整的libc库" default="true" />
 // #define RT_USING_LIBC
-// <bool name="RT_USING_PTHREADS" description="Using POSIX threads library" default="true" />
+// <bool name="RT_USING_PTHREADS" description="系统支持pthread线程接口" default="true" />
 // #define RT_USING_PTHREADS
 // </section>
 
-// <section name="RT_USING_DFS" description="Device file system" default="true" >
+// <section name="RT_USING_DFS" description="支持设备虚拟文件系统" default="true" >
 // #define RT_USING_DFS
-// <bool name="DFS_USING_WORKDIR" description="Using working directory" default="true" />
+// <bool name="DFS_USING_WORKDIR" description="使用工作目录方式，否则必须使用绝对路径进行访问" default="true" />
 // #define DFS_USING_WORKDIR
-// <integer name="DFS_FILESYSTEMS_MAX" description="The maximal number of mounted file system" default="4" />
+// <integer name="DFS_FILESYSTEMS_MAX" description="系统中支持的最大文件系统种类" default="4" />
 #define DFS_FILESYSTEMS_MAX	2
-// <integer name="DFS_FD_MAX" description="The maximal number of opened files" default="4" />
+// <integer name="DFS_FD_MAX" description="系统中支持的同时打开文件最大数目" default="4" />
 #define DFS_FD_MAX	4
-// <bool name="RT_USING_DFS_ELMFAT" description="Using ELM FatFs" default="true" />
+// <bool name="RT_USING_DFS_ELMFAT" description="支持FAT文件系统" default="true" />
 #define RT_USING_DFS_ELMFAT
-// <integer name="RT_DFS_ELM_USE_LFN" description="Support long file name" default="0">
+// <integer name="RT_DFS_ELM_USE_LFN" description="FAT文件系统长文件名" default="0">
 // <item description="LFN with static LFN working buffer">1</item>
 // <item description="LFN with dynamic LFN working buffer on the stack">2</item>
 // <item description="LFN with dynamic LFN working buffer on the heap">3</item>
 // </integer>
 #define RT_DFS_ELM_USE_LFN	3
-// <integer name="RT_DFS_ELM_CODE_PAGE" description="OEM code page" default="437">
+// <integer name="RT_DFS_ELM_CODE_PAGE" description="OEM code page，建议使用437，否则需要载入相应的码表" default="437">
 #define RT_DFS_ELM_CODE_PAGE	437
-// <integer name="RT_DFS_ELM_MAX_LFN" description="Maximal size of file name length" default="256" />
+// <integer name="RT_DFS_ELM_MAX_LFN" description="文件名最大长度" default="256" />
 #define RT_DFS_ELM_MAX_LFN	128
-// <bool name="RT_USING_DFS_YAFFS2" description="Using YAFFS2" default="false" />
+// <bool name="RT_USING_DFS_YAFFS2" description="支持YAFFS2文件系统" default="false" />
 // #define RT_USING_DFS_YAFFS2
-// <bool name="RT_USING_DFS_UFFS" description="Using UFFS" default="false" />
+// <bool name="RT_USING_DFS_UFFS" description="支持UFFS文件系统" default="false" />
 // #define RT_USING_DFS_UFFS
-// <bool name="RT_USING_DFS_DEVFS" description="Using devfs for device objects" default="true" />
+// <bool name="RT_USING_DFS_DEVFS" description="支持以设备文件方式访问系统中的设备驱动对象" default="true" />
 // #define RT_USING_DFS_DEVFS
-// <bool name="RT_USING_DFS_NFS" description="Using NFS v3 client file system" default="false" />
+// <bool name="RT_USING_DFS_NFS" description="支持NFSv3网络文件系统（客户端），服务端可以使用FreeNFS" default="false" />
 // #define RT_USING_DFS_NFS
-// <string name="RT_NFS_HOST_EXPORT" description="NFSv3 host export" default="192.168.1.5:/" />
+// <string name="RT_NFS_HOST_EXPORT" description="网络文件系统服务端输出路径" default="192.168.1.5:/" />
 #define RT_NFS_HOST_EXPORT	"192.168.1.5:/"
 // </section>
 
-// <section name="RT_USING_LWIP" description="lwip, a lightweight TCP/IP protocol stack" default="true" >
+// <section name="RT_USING_LWIP" description="lwIP轻型TCP/IP协议栈配置" default="true" >
 #define RT_USING_LWIP
-// <bool name="RT_LWIP_ICMP" description="Enable ICMP protocol" default="true" />
+// <bool name="RT_LWIP_ICMP" description="支持ICMP协议（ping操作需要）" default="true" />
 #define RT_LWIP_ICMP
-// <bool name="RT_LWIP_IGMP" description="Enable IGMP protocol" default="false" />
+// <bool name="RT_LWIP_IGMP" description="支持IGMP协议" default="false" />
 // #define RT_LWIP_IGMP
-// <bool name="RT_LWIP_UDP" description="Enable UDP protocol" default="true" />
+// <bool name="RT_LWIP_UDP" description="支持UDP协议" default="true" />
 #define RT_LWIP_UDP
-// <bool name="RT_LWIP_TCP" description="Enable TCP protocol" default="true" />
+// <bool name="RT_LWIP_TCP" description="支持TCP协议" default="true" />
 #define RT_LWIP_TCP
-// <bool name="RT_LWIP_DNS" description="Enable DNS protocol" default="true" />
+// <bool name="RT_LWIP_DNS" description="支持DNS协议" default="true" />
 #define RT_LWIP_DNS
-// <bool name="RT_LWIP_SNMP" description="Enable SNMP protocol" default="false" />
+// <bool name="RT_LWIP_SNMP" description="支持SNMP协议" default="false" />
 // #define RT_LWIP_SNMP
-// <bool name="RT_LWIP_DHCP" description="Enable DHCP client to get IP address" default="false" />
+// <bool name="RT_LWIP_DHCP" description="以DHCP方式动态获得本机的IP地址" default="false" />
 // #define RT_LWIP_DHCP
-// <integer name="RT_LWIP_TCPTHREAD_PRIORITY" description="the thread priority of TCP thread" default="128" />
+// <integer name="RT_LWIP_TCPTHREAD_PRIORITY" description="TCP线程的优先级" default="12" />
 #define RT_LWIP_TCPTHREAD_PRIORITY	12
-// <integer name="RT_LWIP_TCPTHREAD_MBOX_SIZE" description="the mail box size of TCP thread to wait for" default="32" />
+// <integer name="RT_LWIP_TCPTHREAD_MBOX_SIZE" description="TCP线程的邮箱大小" default="32" />
 #define RT_LWIP_TCPTHREAD_MBOX_SIZE	8
-// <integer name="RT_LWIP_TCPTHREAD_STACKSIZE" description="the thread stack size of TCP thread" default="4096" />
+// <integer name="RT_LWIP_TCPTHREAD_STACKSIZE" description="TCP线程的栈大小" default="4096" />
 #define RT_LWIP_TCPTHREAD_STACKSIZE	4096
-// <integer name="RT_LWIP_ETHTHREAD_PRIORITY" description="the thread priority of ethnetif thread" default="144" />
+// <integer name="RT_LWIP_ETHTHREAD_PRIORITY" description="以太网收发线程的优先级" default="14" />
 #define RT_LWIP_ETHTHREAD_PRIORITY	14
-// <integer name="RT_LWIP_ETHTHREAD_MBOX_SIZE" description="the mail box size of ethnetif thread to wait for" default="8" />
+// <integer name="RT_LWIP_ETHTHREAD_MBOX_SIZE" description="以太网收发线程的邮箱大小" default="8" />
 #define RT_LWIP_ETHTHREAD_MBOX_SIZE	8
-// <integer name="RT_LWIP_ETHTHREAD_STACKSIZE" description="the stack size of ethnetif thread" default="512" />
+// <integer name="RT_LWIP_ETHTHREAD_STACKSIZE" description="以太网收发线程的栈大小" default="512" />
 #define RT_LWIP_ETHTHREAD_STACKSIZE	512
-// <ipaddr name="RT_LWIP_IPADDR" description="IP address of device" default="192.168.1.30" />
+// <ipaddr name="RT_LWIP_IPADDR" description="本机的静态IP地址" default="192.168.1.30" />
 #define RT_LWIP_IPADDR0 192
 #define RT_LWIP_IPADDR1 168
 #define RT_LWIP_IPADDR2 1
 #define RT_LWIP_IPADDR3 30
-// <ipaddr name="RT_LWIP_GWADDR" description="Gateway address of device" default="192.168.1.1" />
+// <ipaddr name="RT_LWIP_GWADDR" description="网关地址" default="192.168.1.1" />
 #define RT_LWIP_GWADDR0 192
 #define RT_LWIP_GWADDR1 168
 #define RT_LWIP_GWADDR2 1
 #define RT_LWIP_GWADDR3 1
-// <ipaddr name="RT_LWIP_MSKADDR" description="Mask address of device" default="255.255.255.0" />
+// <ipaddr name="RT_LWIP_MSKADDR" description="子网掩码" default="255.255.255.0" />
 #define RT_LWIP_MSKADDR0 255
 #define RT_LWIP_MSKADDR1 255
 #define RT_LWIP_MSKADDR2 255
