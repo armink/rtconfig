@@ -19,8 +19,10 @@
 #define RT_TICK_PER_SECOND	100
 // <section name="RT_DEBUG" description="内核中是否打开一些调试选项（例如RT_ASSERT断言功能），建议打开" default="true" >
 #define RT_DEBUG
-// <bool name="RT_DEBUG_THREAD" description="是否打开线程调试选项" default="false" />
-// #define RT_DEBUG_THREAD    1
+// <integer name="RT_DEBUG_THREAD" description="是否打开线程调试选项" default="0" />
+// #define RT_DEBUG_THREAD    0
+// <integer name="RT_DEBUG_INIT" description="如果启用了组件自动初始化，可以打开这个调试项以分析组件的初始化情况" default="0" />
+// #define RT_DEBUG_INIT      0
 // <bool name="RT_USING_OVERFLOW_CHECK" description="是否支持任务栈溢出检测，这个是一个辅助项，仅在任务切换时进行栈溢出检查" default="true" />
 #define RT_USING_OVERFLOW_CHECK
 // </section>
