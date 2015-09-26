@@ -183,6 +183,37 @@
 #define RT_LWIP_MSKADDR3 0
 // </section>
 
+// <section name="RT_USING_RTGUI" description="RT-Thread 原生的GUI组件功能配置" default="true" >
+#define RT_USING_RTGUI
+// <integer name="RTGUI_NAME_MAX" description="widget/object 最大名称长度，用于根据名称查找控件" default="12" />
+#define RTGUI_NAME_MAX	12
+// <bool name="RTGUI_USING_SMALL_SIZE" description="采用小内存版本的GUI，这时候窗口一些功能会给裁剪掉" default="true" />
+#define RTGUI_USING_SMALL_SIZE
+// <bool name="RTGUI_USING_FONT16" description="使用8*16点阵大小的ASCII字库" default="true" />
+#define RTGUI_USING_FONT16
+// <bool name="RTGUI_USING_FONT12" description="使用6*12点阵大小的ASCII字库" default="true" />
+// #define RTGUI_USING_FONT12
+// <bool name="RTGUI_USING_FONTHZ" description="支持中文字库" default="true" />
+#define RTGUI_USING_FONTHZ
+// <integer name="RTGUI_DEFAULT_FONT_SIZE" description="默认字体大小，当指定字库不存在时，GUI会自己查找默认大小的字库进行替换显示" default="16" />
+#define RTGUI_DEFAULT_FONT_SIZE	16
+// <bool name="RTGUI_USING_DFS_FILERW" description="使用dfs文件系统做为读写接口，用于读取GUI字库文件与打开保存图形文件" default="true" />
+#define RTGUI_USING_DFS_FILERW
+// <bool name="RTGUI_USING_HZ_BMP" description="使用汉字点阵字库" default="true" />
+#define RTGUI_USING_HZ_BMP
+// <bool name="RTGUI_IMAGE_XPM" description="支持显示XMP图形文件" default="true" />
+#define RTGUI_IMAGE_XPM
+// <bool name="RTGUI_IMAGE_JPEG" description="支持显示JPEG图形文件" default="true" />
+#define RTGUI_IMAGE_JPEG
+// <bool name="RTGUI_IMAGE_PNG" description="支持显示PNG图形文件" default="true" />
+#define RTGUI_IMAGE_PNG
+// <bool name="RTGUI_IMAGE_PNG" description="支持显示BMP图形文件" default="true" />
+#define RTGUI_IMAGE_BMP
+// <bool name="RTGUI_USING_HZ_FILE" description="支持汉字字库文件" default="false" />
+#define RTGUI_USING_HZ_FILE
+// <bool name="RTGUI_USING_MOUSE_CURSOR" description="显示鼠标" default="false" />
+#define RTGUI_USING_MOUSE_CURSOR
+// </section>
 // </RDTConfigurator>
 
 #endif
