@@ -169,6 +169,39 @@
 #define RT_LWIP_MSKADDR3 0
 // </section>
 
+// <section name="RT_USING_RTGUI" description="RT-Thread/GUI" default="true" >
+#define RT_USING_RTGUI
+// <integer name="RTGUI_NAME_MAX" description="the name size of RT-Thread/GUI widget/objects" default="12" />
+#define RTGUI_NAME_MAX	12
+// <bool name="RTGUI_USING_SMALL_SIZE" description="use small size in RT-Thread/GUI" default="true" />
+#define RTGUI_USING_SMALL_SIZE
+// <bool name="RTGUI_USING_FONT16" description="support 16 weight font" default="true" />
+#define RTGUI_USING_FONT16
+// <bool name="RTGUI_USING_FONT12" description="support 12 weight font" default="true" />
+// #define RTGUI_USING_FONT12
+// <bool name="RTGUI_USING_FONTHZ" description="support Chinese font" default="true" />
+#define RTGUI_USING_FONTHZ
+// <integer name="RTGUI_DEFAULT_FONT_SIZE" description="default font size in RT-Thread/GUI" default="16" />
+#define RTGUI_DEFAULT_FONT_SIZE	16
+// <bool name="RTGUI_USING_DFS_FILERW" description="use RT-Thread/DFS as file interface" default="true" />
+#define RTGUI_USING_DFS_FILERW
+// <bool name="RTGUI_USING_HZ_BMP" description="use Chinese font bitmap engine" default="true" />
+#define RTGUI_USING_HZ_BMP
+// <bool name="RTGUI_IMAGE_XPM" description="Using xpm image in RTGUI" default="true" />
+#define RTGUI_IMAGE_XPM
+// <bool name="RTGUI_IMAGE_JPEG" description="Using jpeg image in RTGUI" default="true" />
+#define RTGUI_IMAGE_JPEG
+// <bool name="RTGUI_IMAGE_PNG" description="Using PNG image in RTGUI" default="true" />
+#define RTGUI_IMAGE_PNG
+// <bool name="RTGUI_IMAGE_PNG" description="Using PNG image in RTGUI" default="true" />
+#define RTGUI_IMAGE_BMP
+// <bool name="RTGUI_USING_HZ_FILE" description="use font file as Chinese font" default="false" />
+ #define RTGUI_USING_HZ_FILE
+// <bool name="RTGUI_USING_MOUSE_CURSOR" description="use mouse cursor" default="false" />
+#define RTGUI_USING_MOUSE_CURSOR
+// </section>
+
+
 // </RDTConfigurator>
 
 #endif
