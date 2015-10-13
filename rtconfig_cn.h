@@ -214,6 +214,16 @@
 // <bool name="RTGUI_USING_MOUSE_CURSOR" description="显示鼠标" default="false" />
 #define RTGUI_USING_MOUSE_CURSOR
 // </section>
+
+// <section name="RT_USING_MODBUS" description="Modbus协议栈配置" default="always" >
+// <bool name="RT_MODBUS_SLAVE_RTU" description="使用从机RTU模式" default="false" />
+#define RT_MODBUS_SLAVE_RTU
+// <bool name="RT_MODBUS_MASTER_RTU" description="使用主机RTU模式" default="false" />
+#define RT_MODBUS_MASTER_RTU
+// <bool name="RT_MODBUS_MASTER_SLAVE_RTU" description="使用主、从机RTU模式" default="false" />
+#define RT_MODBUS_MASTER_SLAVE_RTU
+// </section>
+
 // </RDTConfigurator>
 
 #endif
