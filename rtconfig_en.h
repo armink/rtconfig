@@ -201,6 +201,14 @@
 #define RTGUI_USING_MOUSE_CURSOR
 // </section>
 
+// <section name="RT_USING_MODBUS" description="Modbus protocol stack" default="true" >
+// <bool name="RT_MODBUS_SLAVE_RTU" description="Enable modbus slave rtu mode" default="false" />
+#define RT_MODBUS_SLAVE_RTU
+// <bool name="RT_MODBUS_MASTER_RTU" description="Enable modbus master rtu mode" default="false" />
+#define RT_MODBUS_MASTER_RTU
+// <bool name="RT_MODBUS_MASTER_SLAVE_RTU" description="Enable modbus master rtu and slave rtu mode" default="false" />
+#define RT_MODBUS_MASTER_SLAVE_RTU
+// </section>
 
 // </RDTConfigurator>
 
