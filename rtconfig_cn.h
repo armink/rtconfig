@@ -221,13 +221,21 @@
 #define RTGUI_USING_MOUSE_CURSOR
 // </section>
 
-// <section name="RT_USING_MODBUS" description="Modbus协议栈配置" default="always" >
+// <section name="RT_USING_MODBUS" description="Modbus协议栈配置" default="true" >
 // <bool name="RT_MODBUS_SLAVE_RTU" description="使用从机RTU模式" default="false" />
 #define RT_MODBUS_SLAVE_RTU
 // <bool name="RT_MODBUS_MASTER_RTU" description="使用主机RTU模式" default="false" />
 #define RT_MODBUS_MASTER_RTU
 // <bool name="RT_MODBUS_MASTER_SLAVE_RTU" description="使用主、从机RTU模式" default="false" />
 #define RT_MODBUS_MASTER_SLAVE_RTU
+// </section>
+
+// <section name="RT_USING_SFUD" description="SFUD 万能 SPI Flash 驱动配置" default="true" >
+#define RT_USING_SFUD
+// <bool name="RT_SFUD_USING_SFDP" description="支持自动探测 JEDEC 规定的 SFDP 参数表" default="true" />
+#define RT_SFUD_USING_SFDP
+// <bool name="RT_SFUD_USING_FLASH_INFO_TABLE" description="使用已定义的 Flash 配置信息表" default="false" />
+#define RT_SFUD_USING_FLASH_INFO_TABLE
 // </section>
 
 // </RDTConfigurator>

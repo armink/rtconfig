@@ -220,6 +220,14 @@
 #define RT_MODBUS_MASTER_SLAVE_RTU
 // </section>
 
+// <section name="RT_USING_SFUD" description="SFUD (Serial Flash Universal Driver)" default="true" >
+#define RT_USING_SFUD
+// <bool name="RT_SFUD_USING_SFDP" description="Using probe flash JEDEC SFDP parameter" default="true" />
+#define RT_SFUD_USING_SFDP
+// <bool name="RT_SFUD_USING_FLASH_INFO_TABLE" description="Using defined supported flash chip information table" default="false" />
+#define RT_SFUD_USING_FLASH_INFO_TABLE
+// </section>
+
 // </RDTConfigurator>
 
 #endif
