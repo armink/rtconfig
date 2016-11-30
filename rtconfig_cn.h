@@ -91,6 +91,12 @@
 #define FINSH_USING_MSH
 // <bool name="FINSH_USING_MSH_DEFAULT" description="shell默认使用msh方式" default="true" />
 //#define FINSH_USING_MSH_DEFAULT
+// <bool name="FINSH_USING_MSH_ONLY" description="shell仅使用msh方式" default="true" />
+//#define FINSH_USING_MSH_ONLY
+// <bool name="FINSH_USING_AUTH" description="shell支持权限验证功能" default="true" />
+//#define FINSH_USING_AUTH
+// <string name="FINSH_DEFAULT_PASSWORD" description="shell密码验证方式默认密码" default="rtthread" />
+//#define FINSH_DEFAULT_PASSWORD	"rtthread"
 // </section>
 
 // <section name="LIBC" description="C运行库配置" default="always" >

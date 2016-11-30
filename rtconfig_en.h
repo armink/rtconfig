@@ -83,6 +83,16 @@
 #define FINSH_USING_DESCRIPTION
 // <integer name="FINSH_THREAD_STACK_SIZE" description="The stack size for finsh thread" default="4096" />
 #define FINSH_THREAD_STACK_SIZE	4096
+// <bool name="FINSH_USING_MSH" description="Using module shell" default="true" />
+#define FINSH_USING_MSH
+// <bool name="FINSH_USING_MSH_DEFAULT" description="Shell default using MSH mode" default="true" />
+//#define FINSH_USING_MSH_DEFAULT
+// <bool name="FINSH_USING_MSH_ONLY" description="Shell only uising MSH mode" default="true" />
+//#define FINSH_USING_MSH_ONLY
+// <bool name="FINSH_USING_AUTH" description="Shell support authentication" default="true" />
+//#define FINSH_USING_AUTH
+// <string name="FINSH_DEFAULT_PASSWORD" description="Shell authentication default password" default="rtthread" />
+//#define FINSH_DEFAULT_PASSWORD	"rtthread"
 // </section>
 
 // <section name="LIBC" description="C Runtime library setting" default="always" >
